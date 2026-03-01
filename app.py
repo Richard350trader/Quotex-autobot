@@ -35,3 +35,18 @@ def webhook():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=10000)
+    @app.route("/postback")
+def postback():
+    user_id = request.args.get("sub_id")
+    status = request.args.get("status")
+
+    if user_id and status == "true":
+        send_message(
+            int(user_id),
+            "🎉 Congratulations!\n\n"
+            "Ready for richardtrader VIP bug compounding session 👑\n\n"
+            "📩 Ab is Telegram ID @rajpottrader par message bhejein aur apna session time confirm karein ⏱️\n\n"
+            "💎 Get ready for your Private Compounding Session 🚀"
+        )
+
+    return "OK"
